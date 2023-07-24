@@ -7,7 +7,7 @@ app.use(express.json())
 app.use(cors())
 
 app.use("/contactus", contactUs)
-
+// Checking update
 
 const errorHandler = (err, req, res, next) => {
     if(res.headerSent){
@@ -17,6 +17,6 @@ const errorHandler = (err, req, res, next) => {
 }
 app.use(errorHandler)
 
-app.listen(3001, () => {
+app.listen(3002, () => {
     console.log(`Listening 3000`);
 })

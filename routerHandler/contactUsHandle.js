@@ -10,8 +10,13 @@ var transporter = nodemailer.createTransport({
     }
   });
 
-router.put("/send/:email", async(req, res) => {
+router.post("/check", async(req, res) => {
+    console.log("first")
+})
+
+router.post("/send/:email", async(req, res) => {
     try {
+        console.log("res")
         const gmailCheck = /([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g
         const peramsSlice = req.params.email.split("&")
         if(peramsSlice.length === 2){
@@ -19,6 +24,7 @@ router.put("/send/:email", async(req, res) => {
             const peramsSub = peramsSlice[1].split(":")
             if(peramsTo[0] === "to" && peramsSub[0] === "sub"){
                 if(peramsTo[0] !== "" && peramsTo[1].match(gmailCheck)){
+                    console.log("Body", req.body)
                     const data = req.body
                     const objectKey = Object.keys(data)
                     let text = ""
@@ -61,6 +67,7 @@ router.put("/send/:email", async(req, res) => {
             })
         }
     } catch (error) {
+        console.log("error")
         res.status(404).json({
             error: "Server side error"
         })
