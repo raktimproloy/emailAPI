@@ -1,12 +1,14 @@
 const express = require("express")
 const cors = require("cors")
-const contactUs = require("./routerHandler/contactUsHandle.js")
+const contactUs = require("./router/contactUsHandle.js")
+const sendMail = require("./router/sendMail.js")
 
 const app = express()
 app.use(express.json())
 app.use(cors())
 
 app.use("/contactus", contactUs)
+app.use("/send-mail", sendMail)
 // Checking update
 
 const errorHandler = (err, req, res, next) => {
@@ -18,5 +20,5 @@ const errorHandler = (err, req, res, next) => {
 app.use(errorHandler)
 
 app.listen(3002, () => {
-    console.log(`Listening 3000`);
+    console.log(`Listening ${3002}`);
 })

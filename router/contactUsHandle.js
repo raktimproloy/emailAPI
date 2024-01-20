@@ -10,13 +10,8 @@ var transporter = nodemailer.createTransport({
     }
   });
 
-router.post("/check", async(req, res) => {
-    console.log("first")
-})
-
 router.post("/send/:email", async(req, res) => {
     try {
-        console.log("res")
         const gmailCheck = /([a-zA-Z0-9]+)([\.{1}])?([a-zA-Z0-9]+)\@gmail([\.])com/g
         const peramsSlice = req.params.email.split("&")
         if(peramsSlice.length === 2){
@@ -67,7 +62,7 @@ router.post("/send/:email", async(req, res) => {
             })
         }
     } catch (error) {
-        console.log("error")
+        console.log(error)
         res.status(404).json({
             error: "Server side error"
         })
